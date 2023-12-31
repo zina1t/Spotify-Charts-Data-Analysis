@@ -3,6 +3,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
+from sklearn.preprocessing import MinMaxScaler
 import calendar
 
 df = pd.read_csv('spotify-2023.csv', encoding='ISO-8859-1')
@@ -48,12 +49,64 @@ fig, axes = plt.subplots(3, 3, figsize=(10, 7))
 
 axes = axes.flatten()
 
+scaler = MinMaxScaler()
+df['streams'] = scaler.fit_transform(df[['streams']])
+
 for i, column in enumerate(columns_analysis):
     plt.sca(axes[i])
     plt.bar(df[column], df['streams'], color='blue')
     plt.xlabel(column, fontsize=12)
     plt.ylabel('Streams', fontsize=12)
     plt.title(f'Streams vs. {column}', fontsize=14)
+    plt.grid(axis='y')
+plt.tight_layout()
+plt.show()
+
+sorted_keys = sorted(df['key'].unique())
+average_streams = df.groupby('key')['streams'].mean().sort_values().index.tolist()
+plt.figure(figsize=(10,7))
+sns.boxplot(x='streams', y='key', data= df, order=average_streams)
+plt.xlabel('Streams')
+plt.ylabel('Keys')
+plt.title('Box Plot of Streams by Keys')
+plt.show()
+
+plt.figure(figsize=(10, 7))
+key_count = df['key'].value_counts(ascending=True)
+colors  = sns.color_palette("Set2", len(key_count))
+
+key_count.plot(x = 'key', y = key_count, kind='bar', color=colors)
+plt.xlabel('Keys')
+plt.ylabel('Count')
+plt.title('Count of each key')
+plt.xticks(rotation=0)
+plt.show()
+
+key_df = df[['key', 'streams']].copy()
+key_df = key_df.groupby('key')['streams'].agg(['mean', 'min', 'max'])
+key_df = key_df.rename(columns={'mean' : 'avg_streams', 'min' : 'min_streams', 'max' : 'max_streams'})
+key_df
+
+plt.figure(figsize=(10, 7))
+key_df.plot(y ='avg_streams', color=colors, kind='bar', legend=False)
+plt.xlabel('Keys')
+plt.ylabel('Average streams')
+plt.title('Average streams by key')
+plt.xticks(rotation=0)
+plt.show()
+
+fig, axes = plt.subplots(3, 3, figsize=(10, 7))
+
+axes = axes.flatten()
+
+scaler = MinMaxScaler()
+df['streams'] = scaler.fit_transform(df[['streams']])
+
+for i, column in enumerate(columns_analysis):
+    plt.sca(axes[i])
+    plt.bar(df['key'], df[column])
+    plt.ylabel('Key')
+    plt.title(f'Key vs. {column}')
     plt.grid(axis='y')
 plt.tight_layout()
 plt.show()
