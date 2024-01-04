@@ -364,12 +364,12 @@ plt.legend(['Major', 'Minor'])
 plt.yticks(np.arange(0, 110, 10))
 plt.show()
 
-# Plot chart for the minimum, average, maximum, and standard deviation of BPM in the popular tracks
-bpm_min = [df['bpm'].min() for df in dataframes]
-bpm_avg = [df['bpm'].mean() for df in dataframes]
-bpm_max = [df['bpm'].max() for df in dataframes]
-bpm_std = [df['bpm'].std() for df in dataframes]
+bpm_min = [df['bpm'].min() for df in top_dataframes]
+bpm_avg = [df['bpm'].mean() for df in top_dataframes]
+bpm_max = [df['bpm'].max() for df in top_dataframes]
+bpm_std = [df['bpm'].std() for df in top_dataframes]
 
+# Plot chart for the minimum, average, maximum, and standard deviation of BPM in the popular tracks
 plt.figure(figsize=(10, 7))
 plt.plot(labels, bpm_max, color='green', marker='o')
 plt.plot(labels, bpm_avg, color='blue', marker='o')
@@ -386,4 +386,225 @@ for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(bpm_max, bpm_avg, b
   plt.text(i, avg_val, f'{avg_val:.0f}', ha='center', va='bottom')
   plt.text(i, min_val, f'{min_val:.0f}', ha='center', va='bottom')
   plt.text(i, std_val, f'{std_val:.0f}', ha='center', va='bottom')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of danceability in the popular tracks
+danceability_min = [df['danceability_%'].min() for df in top_dataframes]
+danceability_avg = [df['danceability_%'].mean() for df in top_dataframes]
+danceability_max = [df['danceability_%'].max() for df in top_dataframes]
+danceability_std = [df['danceability_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, danceability_max, color='green', marker='o')
+plt.plot(labels, danceability_avg, color='blue', marker='o')
+plt.plot(labels, danceability_min, color='orange', marker='o',)
+plt.plot(labels, danceability_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Danceability')
+plt.title('Distribution of Danceability in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(danceability_max, danceability_avg, danceability_min, danceability_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, avg_val, f'{avg_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of danceability in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['danceability_%'], bins=30, kde=True, color='skyblue')
+plt.xlabel('Danceability')
+plt.ylabel('Frequency')
+plt.title('Distribution of Danceability')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of valence in the popular tracks
+valence_min = [df['valence_%'].min() for df in top_dataframes]
+valence_avg = [df['valence_%'].mean() for df in top_dataframes]
+valence_max = [df['valence_%'].max() for df in top_dataframes]
+valence_std = [df['valence_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, valence_max, color='green', marker='o')
+plt.plot(labels, valence_avg, color='blue', marker='o')
+plt.plot(labels, valence_min, color='orange', marker='o',)
+plt.plot(labels, valence_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Valence')
+plt.title('Distribution of Valence in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(valence_max, valence_avg, valence_min, valence_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, avg_val, f'{avg_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of danceability in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['valence_%'], bins=30, kde=True, color='skyblue')
+plt.xlabel('Valence')
+plt.ylabel('Frequency')
+plt.title('Distribution of Valence')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of energy in the popular tracks
+energy_min = [df['energy_%'].min() for df in top_dataframes]
+energy_avg = [df['energy_%'].mean() for df in top_dataframes]
+energy_max = [df['energy_%'].max() for df in top_dataframes]
+energy_std = [df['energy_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, energy_max, color='green', marker='o')
+plt.plot(labels, energy_avg, color='blue', marker='o')
+plt.plot(labels, energy_min, color='orange', marker='o',)
+plt.plot(labels, energy_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Energy')
+plt.title('Distribution of Energy in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(energy_max, energy_avg, energy_min, energy_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, avg_val, f'{avg_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of energy in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['energy_%'], bins=30, kde=True, color='mediumslateblue')
+plt.xlabel('Energy')
+plt.ylabel('Frequency')
+plt.title('Distribution of Energy')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of acousticness in the popular tracks
+acousticness_min = [df['acousticness_%'].min() for df in top_dataframes]
+acousticness_avg = [df['acousticness_%'].mean() for df in top_dataframes]
+acousticness_max = [df['acousticness_%'].max() for df in top_dataframes]
+acousticness_std = [df['acousticness_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, acousticness_max, color='green', marker='o')
+plt.plot(labels, acousticness_avg, color='blue', marker='o')
+plt.plot(labels, acousticness_min, color='orange', marker='o',)
+plt.plot(labels, acousticness_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Acousticness')
+plt.title('Distribution of Acousticness in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(acousticness_max, acousticness_avg, acousticness_min, acousticness_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of acousticness in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['acousticness_%'], bins=30, kde=True, color='mediumslateblue')
+plt.xlabel('Acousticness')
+plt.ylabel('Frequency')
+plt.title('Distribution of Acousticness')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of instrumentalness in the popular tracks
+instrumentalness_min = [df['instrumentalness_%'].min() for df in top_dataframes]
+instrumentalness_avg = [df['instrumentalness_%'].mean() for df in top_dataframes]
+instrumentalness_max = [df['instrumentalness_%'].max() for df in top_dataframes]
+instrumentalness_std = [df['instrumentalness_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, instrumentalness_max, color='green', marker='o')
+plt.plot(labels, instrumentalness_avg, color='blue', marker='o')
+plt.plot(labels, instrumentalness_min, color='orange', marker='o',)
+plt.plot(labels, instrumentalness_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Instrumentalness')
+plt.title('Distribution of Instrumentalness in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(instrumentalness_max, instrumentalness_avg, instrumentalness_min, instrumentalness_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, avg_val, f'{avg_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of instrumentalness in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['instrumentalness_%'], bins=30, kde=True, color='mediumslateblue')
+plt.xlabel('Instrumentalness')
+plt.ylabel('Frequency')
+plt.title('Distribution of Instrumentalness')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of liveness in the popular tracks
+liveness_min = [df['liveness_%'].min() for df in top_dataframes]
+liveness_avg = [df['liveness_%'].mean() for df in top_dataframes]
+liveness_max = [df['liveness_%'].max() for df in top_dataframes]
+liveness_std = [df['liveness_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, liveness_max, color='green', marker='o')
+plt.plot(labels, liveness_avg, color='blue', marker='o')
+plt.plot(labels, liveness_min, color='orange', marker='o',)
+plt.plot(labels, liveness_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Liveness')
+plt.title('Distribution of Liveness in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper right', bbox_to_anchor=(1.0, 0.9))
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(liveness_max, liveness_avg, liveness_min, liveness_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, avg_val, f'{avg_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='bottom')
+plt.show()
+
+# Plot a histogram of the distribution of liveness in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['liveness_%'], bins=30, kde=True, color='mediumslateblue')
+plt.xlabel('Liveness')
+plt.ylabel('Frequency')
+plt.title('Distribution of Liveness')
+plt.show()
+
+# Plot chart for the minimum, average, maximum, and standard deviation of speechiness in the popular tracks
+speechiness_min = [df['speechiness_%'].min() for df in top_dataframes]
+speechiness_avg = [df['speechiness_%'].mean() for df in top_dataframes]
+speechiness_max = [df['speechiness_%'].max() for df in top_dataframes]
+speechiness_std = [df['speechiness_%'].std() for df in top_dataframes]
+
+plt.figure(figsize=(10, 7))
+plt.plot(labels, speechiness_max, color='green', marker='o')
+plt.plot(labels, speechiness_avg, color='blue', marker='o')
+plt.plot(labels, speechiness_min, color='orange', marker='o',)
+plt.plot(labels, speechiness_std, color='red', marker='o')
+plt.xlabel('Number of Songs')
+plt.ylabel('Speechiness')
+plt.title('Distribution of Speechiness in Popular Songs')
+plt.legend(['Maximum', 'Average', 'Minimum', 'Standard Deviation'], loc='upper left')
+
+#add text labels to the lines
+for i, (max_val, avg_val, min_val, std_val) in enumerate(zip(speechiness_max, speechiness_avg, speechiness_min, speechiness_std)):
+  plt.text(i, max_val, f'{max_val:.2f}', ha='center', va='bottom')
+  plt.text(i, min_val, f'{min_val:.2f}', ha='center', va='bottom')
+  plt.text(i, std_val, f'{std_val:.2f}', ha='center', va='top')
+plt.show()
+
+# Plot a histogram of the distribution of speechiness in the popular tracks
+plt.figure(figsize=(10, 7))
+sns.histplot(df1['speechiness_%'], bins=30, kde=True, color='mediumslateblue')
+plt.xlabel('Speechiness')
+plt.ylabel('Frequency')
+plt.title('Distribution of Speechiness')
 plt.show()
